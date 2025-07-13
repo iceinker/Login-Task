@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
 import useAuthStore from "../store/authStore";
-
-// Import logos
+import "boxicons/css/boxicons.min.css";
 import logo1 from "../assets/meetusvr design element 02 (1) 1.png";
 import logo2 from "../assets/meetusvr design element 04 2.png";
 import logo3 from "../assets/meetusvr 3d logo-01 2.png";
@@ -78,45 +77,56 @@ export default function LoginPage() {
 
   return (
     <div className="outer-frame">
-      {/* Ellipses Background */}
       <div className="ellipse ellipse1"></div>
       <div className="ellipse ellipse2"></div>
       <div className="ellipse ellipse3"></div>
       <div className="ellipse ellipse4"></div>
 
-      {/* Left Frame: Login Form */}
       <div className="login-left">
         <div className="form-container">
           <div className="titles">
-            <h1>Welcome Back</h1>
+            <h1>Welcome back</h1>
             <p>
-              Step into our shopping metaverse for an unforgettable shopping
-              experience.
+              Step into our shopping metaverse for an
+              <br />
+              unforgettable shopping experience.
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="inputs">
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setError("");
-              }}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setError("");
-              }}
-              required
-            />
+            
+            <div className="input-with-icon">
+              <i className="bx bx-chat"></i>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setError("");
+                }}
+                required
+              />
+            </div>
+
+            <div className="input-with-icon">
+              <i className="bx bx-lock"></i>
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError("");
+                }}
+                required
+              />
+            </div>
+
+            
             {error && <p className="error">{error}</p>}
+
+            
             <button
               type="submit"
               disabled={!email || !password || loading}
@@ -132,7 +142,7 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Right Frame: Logos */}
+      
       <div className="login-right">
         <div className="logo-frame">
           <div className="logo-stack">

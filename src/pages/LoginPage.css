@@ -1,4 +1,3 @@
-/* Outer Frame */
 .outer-frame {
   display: flex;
   width: 100vw;
@@ -12,7 +11,6 @@
   flex-direction: row;
 }
 
-/* Ellipses */
 .ellipse {
   position: absolute;
   border-radius: 50%;
@@ -37,8 +35,7 @@
   filter: blur(400px);
 }
 
-.ellipse3,
-.ellipse4 {
+.ellipse3 {
   width: 813px;
   height: 813px;
   top: 646px;
@@ -48,7 +45,16 @@
   filter: blur(800px);
 }
 
-/* Left Frame */
+.ellipse4 {
+  width: 807px;
+  height: 807px;
+  top: -372px;
+  left: 38px;
+  background: #9E77F6;
+  opacity: 0.6;
+  filter: blur(800px);
+}
+
 .login-left {
   width: 554px;
   background: rgba(255, 255, 255, 0.3);
@@ -58,6 +64,7 @@
   justify-content: center;
   position: relative;
   z-index: 1;
+  flex: 1; /* Let it grow on small screens */
 }
 
 .form-container {
@@ -93,36 +100,59 @@
   gap: 20px;
 }
 
-.inputs input {
+.input-with-icon {
+  position: relative;
   width: 100%;
-  padding: 15px;
+}
+
+.input-with-icon i {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #999999;
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+.input-with-icon input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px 15px 15px 45px;
   border: 1px solid #cccccc;
   border-radius: 10px;
   font-size: 16px;
+  outline: none;
+}
+
+.input-with-icon input:focus {
+  border-color: #9414FF;
+  box-shadow: 0 0 5px rgba(148, 20, 255, 0.5);
 }
 
 .login-btn {
   width: 100%;
-  padding: 12px 20px;
+  box-sizing: border-box;
+  padding: 15px;
   background-color: #9414FF;
   color: #ffffff;
   font-size: 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #7a11d3;
 }
 
 .signup-text {
   font-size: 14px;
   color: #62626B;
-}
-
-.signup-text span {
-  color: #9414FF;
   cursor: pointer;
 }
 
-/* Right Frame: Logos */
 .login-right {
   flex: 1;
   position: relative;
@@ -140,7 +170,14 @@
   height: 500px;
 }
 
-.logo {
+.logo1 {
+  position: absolute;
+  top: 72.5%;
+  left: 57%;
+  transform: translate(-50%, -50%);
+}
+
+.logo2 {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -148,27 +185,30 @@
 }
 
 .logo3 {
-  margin-top: 50px;
-  width: 250px;
-  height: auto;
+  width: 413px;
+  height: 75px;
+  opacity: 1;
+  margin-top: 20px;
 }
 
-/* Responsive Styling */
+/* Responsive: make left side take over and hide right */
 @media (max-width: 768px) {
   .outer-frame {
-    flex-direction: column;
+    flex-direction: column; /* Optional: stack vertically */
   }
 
   .login-left {
-    width: 100%;
-    height: auto;
-    padding: 20px;
-    border-right: none;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .login-right {
+    display: none; /* Hide the right side */
   }
 
   .form-container {
-    width: 100%;
-    max-width: 350px;
+    width: 90%;
+    max-width: 400px;
     gap: 24px;
   }
 
@@ -178,39 +218,5 @@
 
   .titles p {
     font-size: 14px;
-  }
-
-  .inputs input {
-    font-size: 14px;
-    padding: 12px;
-  }
-
-  .login-btn {
-    font-size: 14px;
-    padding: 10px 16px;
-  }
-
-  .signup-text {
-    font-size: 12px;
-  }
-
-  .login-right {
-    width: 100%;
-    height: 300px;
-    padding: 20px;
-  }
-
-  .logo-frame {
-    width: 300px;
-    height: 300px;
-  }
-
-  .logo3 {
-    width: 180px;
-    margin-top: 20px;
-  }
-
-  .ellipse {
-    display: none; /* Hide background ellipses on small screens */
   }
 }
