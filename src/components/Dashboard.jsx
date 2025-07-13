@@ -1,22 +1,27 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // 👈 import for navigation
+import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
+import "./Dashboard.css";
 
 export default function Dashboard() {
   const user = useAuthStore((state) => state.user);
   const logout = useAuthStore((state) => state.logout);
-  const navigate = useNavigate(); // 👈 get navigate function
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout();        // Clear token and user
-    navigate("/");   // 👈 Redirect to login page
+    logout();
+    navigate("/");
   };
 
   return (
-    <div className="dashboard">
-      <h1>Welcome, {user?.name}!</h1>
-      <p>User ID: {user?.id}</p>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="dashboard-container">
+      <div className="dashboard-card">
+        <h1 className="welcome-text">Welcome back, {user?.name || "User"} 👋</h1>
+        <p className="user-info">User ID: <span>{user?.id}</span></p>
+        <button className="logout-btn" onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
     </div>
   );
 }

@@ -15,7 +15,6 @@ export default function LoginForm({ onSuccess }) {
     e.preventDefault();
     setError("");
 
-    // Simple validation
     if (!email.includes("@") || !email.includes(".")) {
       setError("Invalid email format");
       return;

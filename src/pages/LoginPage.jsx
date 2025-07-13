@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // 👈 Added for redirect
+import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import useAuthStore from "../store/authStore";
 import "boxicons/css/boxicons.min.css";
@@ -10,16 +10,15 @@ import logo3 from "../assets/meetusvr 3d logo-01 2.png";
 export default function LoginPage() {
   const setToken = useAuthStore((state) => state.setToken);
   const setUser = useAuthStore((state) => state.setUser);
-  const token = useAuthStore((state) => state.token); // 👈 Get current token
+  const token = useAuthStore((state) => state.token);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const navigate = useNavigate(); // 👈 For navigation
+  const navigate = useNavigate();
 
-  // 👇 If already logged in, skip login
   useEffect(() => {
     if (token) {
       navigate("/dashboard");
@@ -30,7 +29,6 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");
 
-    // Validate email
     if (!email.includes("@") || !email.includes(".")) {
       setError("❌ Invalid email format");
       return;
@@ -43,7 +41,6 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      // Login API call
       const res = await fetch(
         "https://api-yeshtery.dev.meetusvr.com/v1/yeshtery/token",
         {
@@ -64,7 +61,6 @@ export default function LoginPage() {
       const data = await res.json();
       setToken(data.token);
 
-      // Fetch user info
       const userRes = await fetch(
         "https://api-yeshtery.dev.meetusvr.com/v1/user/info",
         {
@@ -79,7 +75,6 @@ export default function LoginPage() {
       const userData = await userRes.json();
       setUser(userData);
 
-      // 👇 Redirect to dashboard
       navigate("/dashboard");
     } catch (err) {
       setError(err.message);
